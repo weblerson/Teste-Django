@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block 'head' %}
+    <link rel = "stylesheet" href = "{% static 'register/css/register.css' %}">
+{% endblock %}
+
+{% block 'title' %}Registre seu Livro{% endblock %}
+
+{% block 'body' %}
+    <div class = "container">
+        <p>Registre seu livro:</p>
+
+        <form method = 'POST'>{% csrf_token %}
+            <p>Digite o nome do livro:</p>
+            <input type = "text" name = "nome">
+
+            <p>Digite a editora do livro:</p>
+            <input type = "text" name = "editora">
+
+            <p>Digite a sinopse do livro:</p>
+            <input type = "text" name = "sinopse">
+
+            <p>Digite o ano de publicação do livro:</p>
+            <input type = "number" name = "ano">
+
+            <input type = "submit" value = "Registrar">
+        </form>
+
+        {% if request.method == "POST" %}
+            <p>{{ response }}</p>
+        {% endif %}
+    </div>
+{% endblock %}
